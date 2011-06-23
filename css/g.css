@@ -1,0 +1,45 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.3.0
+build: 3167
+*/
+html{color:#000;background:#FFF;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+legend{color:#000;}
+
+/*GLNote*/
+html {background:#eee;}
+body {font-family:Arial,Helvetica,sans-serif;font-size: 67.5%;}
+h1 {background:url(../images/logo.png) Left no-repeat;width:70%;margin:10px auto;text-indent:-1000px;height:40px;}
+#main {margin:auto;width:70%;clear:both;}
+.top_bar {height:30px;line-height:30px;border-top:1px solid #bbccff;background:#e3e9ff;width:100%;}
+.key_tip {margin-top:10px;}
+.key_tip h3 {margin-bottom:5px;font-size:14px;}
+.header {text-align:right;width:70%;margin:auto;}
+.site_info {float:left;}
+#update_status {float:right;}
+#contains {padding:20px;border:1px solid #bbb;background:#fff;}
+#content {outline:none;width:100%;height:100%;background:#fff;color:#000;font-size:1.6em;resize:none;border:0;}
+#dialog {width:200px;}
+p.tip {margin:10px 0;line-height:165%;}
+p.google_login {text-align:center;margin-bottom:10px;}
+:focus {
+    border: none;
+    outline: 0;
+}
+.footer {text-align:center;color:#666;width:70%;margin:auto;margin-top:10px;}
+.footer a {color:#000;}
