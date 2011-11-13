@@ -38,14 +38,23 @@ function p() {
 <link href="css/g.css" rel="stylesheet" type="text/css" media="screen"/>
 <link rel="shortcut icon" href="favicon.ico" />
 <link href="css/jquery-ui-1.8.12.custom.css" rel="stylesheet" type="text/css" media="screen"/>
-<script src="http://www.google.com/jsapi?key=ABQIAAAAQHxySxS2YjC6EWWIwMwk8xR1krk9nt6JAoGFnJWVTaroUfbeyxSq0VITDnLKJlVCtORWzB_jekg4-A"></script>
+<!--
+<script src="https://www.google.com/jsapi?key=ABQIAAAAQHxySxS2YjC6EWWIwMwk8xR1krk9nt6JAoGFnJWVTaroUfbeyxSq0VITDnLKJlVCtORWzB_jekg4-A"></script>
+--!>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
 <script src="js/g.js"></script>
 <script>
-	google.load("jquery", "1.6.1");
-	google.load("jqueryui", "1.8.13");
+
+//	google.load("jquery", "1.6.1");
+//	google.load("jqueryui", "1.8.13");
 </script>
+
+<!--
 <script src="js/jquery.cleditor.min.js"></script>
 <script src="js/jquery.hotkeys.js"></script>
+-->
+
 </head>
 <title>GLNote, note everyday by using google documents list api. Good Luck!</title>
 <body>
@@ -57,7 +66,10 @@ function p() {
 	</div>
 	<div id="main">
 		<div id="contains">
-			<textarea autofocus="autofocus" id="content" class="content" name="content">Loading...</textarea>		
+<!--
+			<textarea autofocus="autofocus"  class="content" name="content">Loading...</textarea>		
+-->
+			<iframe src="document.html" id="content" width="500" height="500"></iframe>
 		</div>
 		<!--
 		<div class="key_tip">
@@ -68,7 +80,7 @@ function p() {
 		-->
 	</div>
 	<div class="footer">
-		&copy;GLNote 2011 Hosted by <a href="http://www.linode.com/?r=49e814ad64515fd062c54fb16944a501de351c12" target="_blank">Linode</a> &nbsp;&nbsp; <a href="http://www.zhouming.me" target="_blank">Blog</a>
+		&copy;GLNote 2011 Hosted by <a href="http://www.linode.com/?r=49e814ad64515fd062c54fb16944a501de351c12" target="_blank">Linode</a> &nbsp;&nbsp; <a href="http://www.zhouming.me" target="_blank">Blog</a>&nbsp;&nbsp;<a href="https://github.com/zhouming/GLNote" target="_blank">Source Code On GitHub</a>
 	</div>
 	<div id="glnote_debug">
 	</div>
@@ -90,6 +102,7 @@ function p() {
 				return false;	
 			};
 			textarea_height();
+			/*
 			gl.editor = $('#content').cleditor({
 				width:"100%", 
 				height:"100%",
@@ -98,20 +111,37 @@ function p() {
 				docType: '<!DOCTYPE HTML>',
 				bodyStyle:"font-size:14px;font-family:'Arial, Helvetica, sans-serif';cursor:text;line-height:165%;"
 			})[0].focus();
+			*/
 			$(window).resize(function(){
 				textarea_height();
-				gl.editor.refresh();
+				//gl.editor.refresh();
 			});
-			if (gl.is_login == false) {
-				$('#dialog').dialog({
-					title : 'Log in with Google',
-					open : function(){$('#dialog a, #dialog img').blur();}
-				});
-			} else {
-				if(create_glnote_folder()) {
-					get_glnote_document();	
-				};
-			}
+			$('#content').load(function(){
+				gl.editor=this.contentWindow.editor;
+				
+				gl.editor.setHTML('Loading');
+
+				if (gl.is_login == false) {
+					$('#dialog').dialog({
+						title : 'Log in with Google',
+							open : function(){$('#dialog a, #dialog img').blur();}
+					});
+				} else {
+					if(create_glnote_folder()) {
+						get_glnote_document();	
+					};
+				}
+
+				gl.editor.focus();
+
+				setInterval(function(){
+					if (gl.is_loaded == false) return false;
+					update_glnote_document();
+				}, 15000);
+
+
+			});
+
 			/*
 			var p_time = '';
 			gl.editor.doc.addEventListener('keydown', function(e){
@@ -125,12 +155,7 @@ function p() {
 			
 			}, false);
 			*/
-
-			setInterval(function(){
-				if (gl.is_loaded == false) return false;
-				update_glnote_document();
-			}, 15000);
-
+			/*
 			$(gl.editor.doc).bind('keydown', 'ctrl+s', function(e){
 				//clearTimeout(p_time);
 				update_glnote_document();
@@ -163,7 +188,6 @@ $(gl.editor.doc).bind('keydown', 'ctrl+1', function(e){
 			$(gl.editor.doc).bind('keydown', 'meta+l', function(e){
 				h_tag("<hr>", e);
 			});
-
 			$(document).bind('keydown', 'ctrl+s', function(e){
 				//clearTimeout(p_time);
 				update_glnote_document();
@@ -173,7 +197,8 @@ $(gl.editor.doc).bind('keydown', 'ctrl+1', function(e){
 				//clearTimeout(p_time);
 				update_glnote_document();
 				stop_default(e);
-			});			
+			});
+			 */
 		});
 		
 	</script>

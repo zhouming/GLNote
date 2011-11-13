@@ -81,6 +81,8 @@ switch($act) {
 			$msg = $r;
 			if ($r['code'] == 200) {
 				$msg['body'] = br2nl($r['body']);
+				preg_match('/<body\s\w*=?"?\w+"?>(.*)<\/body>/', $msg['body'], $match);
+				$msg['body'] = $match['1'];
 			}
 			$msg['etag'] = $_SESSION['doc_etag'];
 		}

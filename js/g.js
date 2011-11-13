@@ -41,14 +41,14 @@ function get_glnote_document() {
 		async : false	
 	});
 	//$('#content').val('loading...').attr('readOnly','readOnly');
-	gl.editor.updateFrame();
+//	gl.editor.updateFrame();
 	$.getJSON('ajax.php?act=get_glnote_document', '', function(r){
 		if (r.code == 200) {
 			//$('#content').val(r.body);
 			//$('#content').removeAttr('readOnly');
-			gl.editor.$area.val(r.body);
+			gl.editor.setHTML(r.body);
 			window.localStorage.setItem('latest_content', r.body);
-			gl.editor.updateFrame();
+//			gl.editor.updateFrame();
 			gl.is_loaded = true;
 		} else {
 			//alert(r.msg);
@@ -65,8 +65,9 @@ function update_glnote_document() {
 		dataType : 'json'
 	});
 	//var v = $('#content').val();
-	gl.editor.updateTextArea();
-	var v = gl.editor.$area.val();
+	//gl.editor.updateTextArea();
+	//var v = gl.editor.$area.val();
+	var v = gl.editor.getHTML();
 	var latest_v = window.localStorage.getItem('latest_content');
 	if (v == latest_v) {
 		return false;
