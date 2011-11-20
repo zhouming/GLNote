@@ -58,19 +58,21 @@ function p() {
 </head>
 <title>GLNote, note everyday by using google documents list api. Good Luck!</title>
 <body>
-	<h1>GLNote</h1>
-	<div class="top_bar">
-		<div class="header">
-			<div id="update_status"></div>
+	<header>
+		<h1>GLNote</h1>
+		<div class="top_bar">
+			<div class="header">
+				<div id="update_status"></div>
+			</div>
 		</div>
-	</div>
-	<div id="main">
-		<div id="contains">
+	</header>
+	<section id="main">
+		<article id="contains">
 <!--
 			<textarea autofocus="autofocus"  class="content" name="content">Loading...</textarea>		
 -->
 			<iframe src="document.html" id="content" width="500" height="500"></iframe>
-		</div>
+		</article>
 		<!--
 		<div class="key_tip">
 			<h3>Hotkeys</h3>
@@ -78,10 +80,11 @@ function p() {
 			</p>
 		</div>
 		-->
-	</div>
-	<div class="footer">
+	</section>
+	<footer class="footer">
 		&copy;GLNote 2011 Hosted by <a href="http://www.linode.com/?r=49e814ad64515fd062c54fb16944a501de351c12" target="_blank">Linode</a> &nbsp;&nbsp; <a href="http://www.zhouming.me" target="_blank">Blog</a>&nbsp;&nbsp;<a href="https://github.com/zhouming/GLNote" target="_blank">Source Code On GitHub</a>
-	</div>
+	</footer>
+
 	<div id="glnote_debug">
 	</div>
 
