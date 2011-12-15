@@ -44,16 +44,7 @@ function p() {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
 <script src="js/g.js"></script>
-<script>
-
-//	google.load("jquery", "1.6.1");
-//	google.load("jqueryui", "1.8.13");
-</script>
-
-<!--
-<script src="js/jquery.cleditor.min.js"></script>
 <script src="js/jquery.hotkeys.js"></script>
--->
 
 </head>
 <title>GLNote, note everyday by using google documents list api. Good Luck!</title>
@@ -68,25 +59,12 @@ function p() {
 	</header>
 	<section id="main">
 		<article id="contains">
-<!--
-			<textarea autofocus="autofocus"  class="content" name="content">Loading...</textarea>		
--->
 			<iframe src="document.html" id="content" width="500" height="500"></iframe>
 		</article>
-		<!--
-		<div class="key_tip">
-			<h3>Hotkeys</h3>
-			<p>Save: control(command) + s, H1: control(command) + 1, H2: control(command) + 2, P: control(command) + p
-			</p>
-		</div>
-		-->
 	</section>
 	<footer class="footer">
 		&copy;GLNote 2011 Hosted by <a href="http://www.linode.com/?r=49e814ad64515fd062c54fb16944a501de351c12" target="_blank">Linode</a> &nbsp;&nbsp; <a href="http://www.zhouming.me" target="_blank">Blog</a>&nbsp;&nbsp;<a href="https://github.com/zhouming/GLNote" target="_blank">Source Code On GitHub</a>
 	</footer>
-
-	<div id="glnote_debug">
-	</div>
 
 	<div id="dialog" style="display:none;">
 		<p class="tip">GLNote use google docs api, so you need to have a google account.</p>
@@ -105,19 +83,8 @@ function p() {
 				return false;	
 			};
 			textarea_height();
-			/*
-			gl.editor = $('#content').cleditor({
-				width:"100%", 
-				height:"100%",
-				useCSS:true,
-				docCSSFile:'css/iframe.css',
-				docType: '<!DOCTYPE HTML>',
-				bodyStyle:"font-size:14px;font-family:'Arial, Helvetica, sans-serif';cursor:text;line-height:165%;"
-			})[0].focus();
-			*/
-			$(window).resize(function(){
+				$(window).resize(function(){
 				textarea_height();
-				//gl.editor.refresh();
 			});
 			$('#content').load(function(){
 				gl.editor=this.contentWindow.editor;
@@ -141,67 +108,30 @@ function p() {
 					if (gl.is_loaded == false) return false;
 					update_glnote_document();
 				}, 15000);
-
-
-			});
-
-			/*
-			var p_time = '';
-			gl.editor.doc.addEventListener('keydown', function(e){
-				if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40 || e.keyCode == 13) return false;
 				
-				if (gl.is_loaded == false) return false;
-				clearTimeout(p_time);
-				p_time = setTimeout(function(){
+				$(this.contentWindow).bind('keydown', 'ctrl+s', function(e){
+					if (gl.is_loaded == false) return false;
 					update_glnote_document();
-				}, 3000);
-			
-			}, false);
-			*/
-			/*
-			$(gl.editor.doc).bind('keydown', 'ctrl+s', function(e){
-				//clearTimeout(p_time);
-				update_glnote_document();
-				stop_default(e);
+					stop_default(e);
+				});
+				$(this.contentWindow).bind('keydown', 'meta+s', function(e){
+					if (gl.is_loaded == false) return false;
+					update_glnote_document();
+					stop_default(e);
+				});
+				$(this.contentWindow).bind('keydown', 'ctrl+h', function(e) {
+					var v = gl.editor.getHTML();
+					gl.editor.setHTML(v + '<hr/>');
+					stop_default(e);
+				});
+				$(this.contentWindow).bind('keydown', 'meta+h', function(e) {
+					var v = gl.editor.getHTML();
+					gl.editor.setHTML(v + '<hr/>');
+					stop_default(e);
+				});
+
 			});
 
-			$(gl.editor.doc).bind('keydown', 'meta+s', function(e){
-				//clearTimeout(p_time);
-				update_glnote_document();
-				stop_default(e);
-			});
-			$(gl.editor.doc).bind('keydown', 'meta+1', function(e){
-				h_tag("<h1>", e);
-			});
-			$(gl.editor.doc).bind('keydown', 'meta+2', function(e){
-				h_tag("<h2>", e);
-			});
-			$(gl.editor.doc).bind('keydown', 'meta+p', function(e){
-				h_tag("<p>", e);
-			});
-$(gl.editor.doc).bind('keydown', 'ctrl+1', function(e){
-				h_tag("<h1>", e);
-			});
-			$(gl.editor.doc).bind('keydown', 'ctrl+2', function(e){
-				h_tag("<h2>", e);
-			});
-			$(gl.editor.doc).bind('keydown', 'ctrl+p', function(e){
-				h_tag("<p>", e);
-			});
-			$(gl.editor.doc).bind('keydown', 'meta+l', function(e){
-				h_tag("<hr>", e);
-			});
-			$(document).bind('keydown', 'ctrl+s', function(e){
-				//clearTimeout(p_time);
-				update_glnote_document();
-				stop_default(e);
-			});
-			$(document).bind('keydown', 'meta+s', function(e){
-				//clearTimeout(p_time);
-				update_glnote_document();
-				stop_default(e);
-			});
-			 */
 		});
 		
 	</script>

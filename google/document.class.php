@@ -15,6 +15,7 @@ Class GoogleOAuth {
 	public $access_token		=	'';
 	public $access_token_time	=	'';
 	public $refresh_token		=	'';
+	public $access_type			=	'offline';
 
 	public function __construct() {
 		$this->access_token			=	isset($_SESSION['access_token']) ? $_SESSION['access_token'] : '';
@@ -29,7 +30,8 @@ Class GoogleOAuth {
 				'redirect_uri'	=>	$this->redirect_uri,
 				'scope'			=>	$this->scope,
 				'response_type'	=>	$this->response_type,
-				'state'			=>	$this->state
+				'state'			=>	$this->state,
+				'access_type'   =>  $this->access_type
 			);
 			$url_param = http_build_query($oauth_param);
 			return $this->oauth_url.'?'.$url_param;

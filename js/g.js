@@ -115,3 +115,4 @@ function h_tag(tag, e) {
 	gl.editor.execCommand(command, value, 1, '');
 	stop_default(e);
 }
+
